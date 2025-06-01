@@ -2,7 +2,7 @@ cabal-version:       2.2
 
 name:                colorhash
 version:             0.1.0.0
--- synopsis:
+synopsis: Generate a color for a hashable object.
 -- description:
 homepage:            https://github.com/hapytex/colorhash#readme
 license:             BSD-3-Clause
