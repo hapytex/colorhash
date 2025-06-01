@@ -12,12 +12,15 @@
 -- each of the items a different color based on the hash.
 --
 -- This module provides a function 'rgbHash' that can convert any 'Hashable' object to a 'Colour'.
-module Data.Hashable.Color (
-  -- * Determine color
-    rgbHash
-  -- * Show items with color
-  , rgbHashBgShow, rgbHashFgShow
-  ) where
+module Data.Hashable.Color
+  ( -- * Determine color
+    rgbHash,
+
+    -- * Show items with color
+    rgbHashBgShow,
+    rgbHashFgShow,
+  )
+where
 
 import Data.Bits (shiftR, xor, (.&.))
 import Data.Colour (Colour)
@@ -31,9 +34,9 @@ _word8 :: Int -> Word8
 _word8 = toEnum . (255 .&.)
 
 _scramble :: Int -> Int
-_scramble x = ((shiftR x 16) `xor` x) * 0x45d9f3b;
+_scramble x = ((shiftR x 16) `xor` x) * 0x45d9f3b
 
-_rgbHash :: Hashable a => a -> Col8
+_rgbHash :: (Hashable a) => a -> Col8
 _rgbHash x = (r, g, b)
   where
     h = _scramble (_scramble (hash x))
@@ -67,7 +70,8 @@ rgbHash x = sRGB24 r g b
     ~(r, g, b) = _rgbHash x
 
 -- | Show the given 'Hashable' object with ANSI terminal codes such that the background is colorized by the hash of that object. This will only work if the terminal supports [24-bit colors](https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit). The foreground is either black or white depending on whether the color is more light or dark.
-rgbHashBgShow :: (Hashable a, Show a) =>
+rgbHashBgShow ::
+  (Hashable a, Show a) =>
   -- | The 'Hashable' object to print in a colorized way.
   a ->
   -- | A String with ANSI terminal codes to colorize the object
@@ -78,7 +82,8 @@ rgbHashBgShow x = _ansiSeqBg c (_ansiSeqFg ca (showsPrec 0 x "\027[0m"))
     ca = _altColor c
 
 -- | Show the given 'Hashable' object with ANSI terminal codes such that the foreground is colorized by the hash of that object. This will only work if the terminal supports [24-bit colors](https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit). The background is either black or white depending on whether the color is more light or dark.
-rgbHashFgShow :: (Hashable a, Show a) =>
+rgbHashFgShow ::
+  (Hashable a, Show a) =>
   -- | The 'Hashable' object to print in a colorized way.
   a ->
   -- | A String with ANSI terminal codes to colorize the object
