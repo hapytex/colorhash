@@ -34,7 +34,7 @@ _word8 :: Int -> Word8
 _word8 = toEnum . (255 .&.)
 
 _scramble :: Int -> Int
-_scramble x = ((shiftR x 16) `xor` x) * 0x45d9f3b
+_scramble x = (shiftR x 16 `xor` x) * 0x45d9f3b
 
 _rgbHash :: (Hashable a) => a -> Col8
 _rgbHash x = (r, g, b)
@@ -76,7 +76,7 @@ rgbHashBgShow ::
   a ->
   -- | A String with ANSI terminal codes to colorize the object
   String
-rgbHashBgShow x = _ansiSeqBg c (_ansiSeqFg ca (showsPrec 0 x "\027[0m"))
+rgbHashBgShow x = _ansiSeqBg c (_ansiSeqFg ca (shows x "\027[0m"))
   where
     c = _rgbHash x
     ca = _altColor c
@@ -88,7 +88,7 @@ rgbHashFgShow ::
   a ->
   -- | A String with ANSI terminal codes to colorize the object
   String
-rgbHashFgShow x = _ansiSeqFg c (_ansiSeqBg ca (showsPrec 0 x "\027[0m"))
+rgbHashFgShow x = _ansiSeqFg c (_ansiSeqBg ca (shows x "\027[0m"))
   where
     c = _rgbHash x
     ca = _altColor c
