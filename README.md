@@ -14,8 +14,6 @@ The only module, `Data.Hashable.Color` is compiled with the `Safe` pragma.
 
 ## Contribute
 
-You can contribute by making a pull request on the [*GitHub
-repository*](https://github.com/hapytex/colorhash).
+You can contribute by making a pull request on the [*GitHub repository*](https://github.com/hapytex/colorhash).
 
-You can contact the package maintainer by sending a mail to
-[`hapytexeu+gh@gmail.com`](mailto:yourfriends@hapytex.eu).
+You can contact the package maintainer by sending a mail to [`yourfriends@hapytex.eu`](mailto:yourfriends@hapytex.eu).
