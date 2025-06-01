@@ -10,24 +10,27 @@
 -- each of the items a different color based on the hash.
 --
 -- This module provides a function 'rgbHash' that can convert any 'Hashable' object to a 'Colour'.
+module Data.Hashable.Color (rgbHash) where
 
-module Data.Hashable.Color(rgbHash) where
-
-import Data.Bits((.&.), shiftR)
-import Data.Colour(Colour)
-import Data.Colour.SRGB(sRGB24)
-import Data.Hashable(Hashable(hash))
-import Data.Word(Word8)
+import Data.Bits (shiftR, (.&.))
+import Data.Colour (Colour)
+import Data.Colour.SRGB (sRGB24)
+import Data.Hashable (Hashable (hash))
+import Data.Word (Word8)
 
 _word8 :: Int -> Word8
 _word8 = toEnum . (255 .&.)
 
 -- | Convert a given 'Hashable' object to a 'Colour' by determining the hash, and using the last 24 bits as source for the red, green, and blue channels of the 'Colour' to construct.
-rgbHash :: (Hashable a, Floating b, Ord b)
-        => a  -- ^ The 'Hashable' object to convert to a color.
-        -> Colour b  -- ^ The corresponding color to use.
+rgbHash ::
+  (Hashable a, Floating b, Ord b) =>
+  -- | The 'Hashable' object to convert to a color.
+  a ->
+  -- | The corresponding color to use.
+  Colour b
 rgbHash x = sRGB24 r g b
-  where h = hash x
-        b = _word8 h
-        g = _word8 (shiftR h 8)
-        r = _word8 (shiftR h 16)
+  where
+    h = hash x
+    b = _word8 h
+    g = _word8 (shiftR h 8)
+    r = _word8 (shiftR h 16)
