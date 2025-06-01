@@ -8,3 +8,14 @@ Hashes are an easy way to distinguish between two objects since it is not imposs
 
 This module provides a function `rgbHash :: (Hashable a, Floating b, Ord b) => a -> Colour b` that can convert any `Hashable` object to a `Colour`.
 
+## `colorhash` is *safe* Haskell
+
+The only module, `Data.Hashable.Color` is compiled with the `Safe` pragma.
+
+## Contribute
+
+You can contribute by making a pull request on the [*GitHub
+repository*](https://github.com/hapytex/colorhash).
+
+You can contact the package maintainer by sending a mail to
+[`hapytexeu+gh@gmail.com`](mailto:yourfriends@hapytex.eu).

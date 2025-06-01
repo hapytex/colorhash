@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 -- |
 -- Module      : Data.Hashable.Color
 -- Description : A module to work convert a 'Hashable' object to a 'Colour'
