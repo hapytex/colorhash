@@ -55,7 +55,7 @@ _ansiSeqFg = _ansiSeq 38
 
 _altColor :: Col8 -> Col8
 _altColor ~(r, g, b)
-  | 1063 * fromEnum r + 3576 * fromEnum g + 361 * fromEnum b <= 200000 = (255, 255, 255)
+  | 299 * fromEnum r + 587 * fromEnum g + 114 * fromEnum b <= 128000 = (255, 255, 255)
   | otherwise = (0, 0, 0)
 
 -- | Convert a given 'Hashable' object to a 'Colour' by determining the hash, and using the last 24 bits as source for the red, green, and blue channels of the 'Colour' to construct.
